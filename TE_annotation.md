@@ -53,7 +53,7 @@ bsub -q normal -R "select[type==X86_64 && mem > 8000] rusage[mem=8000]" -n16 -M8
 This set of perl scripts described in [Bailly-Bechet et al 2014](https://mobilednajournal.biomedcentral.com/articles/10.1186/1759-8753-5-13) is extremely useful to parse RepeatMasker outputs. Please refer to the article and site the original paper if you use any of the `Onecodetofindthemall` scripts. See the [README](https://github.com/annaprotasio/TE_tools_avp25/blob/master/Onecodetofindthemall/README) but basically, this script takes the output of RepeatMasker and matches the internal subpart and LTR subpart of a given LTR element, hence why they were separated in the initial curated library FASTA file. The <build> file generated only has information for the LTR elements
 
 ```
-perl Onecodetofindthemall/build_dictionary.pl --rm schisto_hic.curated.final.v8.fa.out  > schisto_hic.curated.final.v8.fa.out.build
+perl Onecodetofindthemall/build_dictionary.pl --rm genome_reference.fa.out  > genome_reference.fa.out.build
 ```
 
 ## 4. Onecodetofindthemall - Parse RepeatMasker Annotation.
@@ -79,7 +79,7 @@ Other parameters can be added, full list of options can be found [here](https://
 To run the parser:
 
 ```
-perl Onecodetofindthemall/one_code_to_find_them_all.pl --rm schisto_hic.curated.final.v8.fa.out --ltr schisto_hic.curated.final.v8.fa.out.build  --length split_LTR_library.length
+perl Onecodetofindthemall/one_code_to_find_them_all.pl --rm genome_reference.fa.out --ltr genome_reference.fa.out.build  --length split_LTR_library.length
 ```
 
 The output of the script is a series of CSV files, three per chromosome, with detailed annotation of all elements found. The summary files are *elem_sorted.csv and the summary lines in these files start with `###`. For example: 
@@ -97,7 +97,7 @@ The top line is the summary/assembly of the three elements underneath. The last 
 
 ## 5. Generate valid GFF with final annotation
 
-In order to obtain an annotation file that can be used in standard counting algorithms such as `featureCounts` or `htseq-counts`, it is necessary to produce a GFF. This can be done with `https://github.com/annaprotasio/TE_tools_avp25/blob/master/onecode-2-GFF.pl`. This script takes all the *elem\_sorted.csv, combines them, re-defined solo_LTRs so they can be treated separatelly, filters for a user-defined minimum percentage reference (percentage - length - that the feature has with respect to the reference) and puts results in a user-defined file. 
+In order to obtain an annotation file that can be used in standard counting algorithms such as `featureCounts` or `htseq-counts`, it is necessary to produce a GFF. This can be done with `https://github.com/annaprotasio/TE_tools_avp25/blob/master/onecode-2-GFF.pl`. This script takes all the *elem\_sorted.csv, combines them, re-defined solo_LTRs so they can be treated separatelly, filters for a user-defined minimum percentage reference (percentage - length - that the feature has with respect to the reference) and puts results in a user-defined file name. 
 
 Example run:
 ```

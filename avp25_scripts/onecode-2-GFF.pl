@@ -56,7 +56,7 @@ sub print_usage {
   
   print "Usage: $0 <perc_ref> <file_GFF>\n\n";
   print "Parser script. Takes the output from \"Onecodetofindthemall\" (https://mobilednajournal.biomedcentral.com/articles/10.1186/1759-8753-5-13) and makes a GFF/GTF that can be used for quantification. This script discriminates between soloLTRs, providing a distict feature id.\n\n";
-  print "IMPORTANT:    $0 must be called from the same directory where the output of Onecode is, as it will look for *.elem_sorted.csv files\n";
+  print "IMPORTANT:    $0 must be called from the same directory where the output of Onecode is, as it will look for *.elem_sorted.csv files ... hence, there is no unpit declaration in the command callin\n\n";
   print "INPUT:        <perc_ref>            float - for each TE feature, Onecode reports the percentage of the reference. This value sets the minimim. For strict parameter, use 0.8\n";
   print "INPUT:        <file_GFF>            Name of GFF file where the script should save the annotation. The file is standard GTF/GFF with the 9th field having bespoke annotation\n\n";
   print "Authored by Anna V. Protasio. Report bugs and constructive feedback to avp25\@cam.ac.uk. GNU GENERAL PUBLIC LICENSE. \n\n";
