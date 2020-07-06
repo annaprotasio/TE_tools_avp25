@@ -1,4 +1,4 @@
-These instructions describe how to produce annotation of TEs into the genome using a curated library, RepeatMasker and further processing using Onecodetofindthemall and some personal scripts. 
+These instructions describe how to produce annotation of TEs into the genome using a curated library, RepeatMasker and further processing using Onecodetofindthemall and some of my scripts (which are accessible here).  
 
 Summary of steps:
 
@@ -35,7 +35,7 @@ The command to run it in Sanger HPC is as follows.
 
 ```
 module load tetools/1.1
-bsub -q normal -R "select[type==X86_64 && mem > 8000] rusage[mem=8000]" -n16 -M8000 -o rpmk.o -e rpmk.e -J rpmk  "RepeatMasker -no_is -nolow -pa 16 -s -poly -excln -dir ./ -lib june2020_cons_lib.fa /lustre/scratch118/infgen/team133/ap6/mansoni/REF/schisto_hic.curated.final.v8.fa"
+bsub -q normal -R "select[type==X86_64 && mem > 8000] rusage[mem=8000]" -n16 -M8000 -o rpmk.o -e rpmk.e -J rpmk  "RepeatMasker -no_is -nolow -pa 16 -s -poly -excln -dir ./ -lib june2020_cons_lib.fa genome_reference.fa"
 ```
 
 - no\_is		Skips bacterial insertion element check
@@ -44,6 +44,9 @@ bsub -q normal -R "select[type==X86_64 && mem > 8000] rusage[mem=8000]" -n16 -M8
 - poly		Reports simple repeats that may be polymorphic (in file.poly)
 - excln		Calculates repeat densities (in .tbl) excluding runs of >=20 N/Xs the query
 - lcambig	Probably better for nematode/tapeworm species. Outputs ambiguous DNA transposon fragments using a lower case name. All other repeats are listed in upper case. Ambiguous fragments match multiple repeat elements and can only be called based on flanking repeat information. (not used)
+
+
+
 
 ## 3. Onecodetofindthemall - Build dictionary step.
 

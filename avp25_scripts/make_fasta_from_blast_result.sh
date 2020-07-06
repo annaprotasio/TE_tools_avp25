@@ -5,11 +5,11 @@ if [ $# -ne 4 ]
 then
     echo -e "\nusage: $0 <genome.fa> <fasta.in> <min_length> <flank>\n"
     echo -e "DESCRIPTION: This script takes a fasta sequence <fasta.in>, blasts it to the <genome.fa>, recovers locations with alingment lenght > <min_length>, prints them as bed file, extends bed coordinates <flank> bases in each direction,  and makes fasta from that BED."
-    echo -e "OUTPUT:      produces a <fasta.in.bed> which is the blast results BED file file"
-    echo -e "             produces a <fasta.in.blast.flank.bed> which is the extended BED"
-    echo -e "             produces a <fasta.in.blast.flank.bed.fa> bedtools getfasta \n"
-    echo -e "REQUIRES:    file with chromosome lengths with same name as genome, as in <genome.fa.length>, and found in the same dir as genome (use \"samtools faixd\" and then \"cut -d 1,2\""
-    echo -e "             <genome.fa> must be formatted for blast with \"makeblastdb\" "		
+    echo -e "OUTPUT    :  produces a <fasta.in.bed> which is the blast results BED file file"
+    echo -e "          :  produces a <fasta.in.blast.flank.bed> which is the extended BED"
+    echo -e "          :  produces a <fasta.in.blast.flank.bed.fa> bedtools getfasta \n"
+    echo -e "REQUIRES  :  file with chromosome lengths with same name as genome, as in <genome.fa.length>, and found in the same dir as genome (use \"samtools faixd\" and then \"cut -f 1,2\""
+    echo -e "          :  <genome.fa> must be formatted for blast with \"makeblastdb\" "		
      
     exit
 fi
