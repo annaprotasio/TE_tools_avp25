@@ -38,7 +38,12 @@ blastn -query $fasta_in -db $genome -outfmt "6 qseqid sseqid pident length misma
 
 awk '{OFS="\t"; if ($1~/^\#/) {} else { if ($10~/plus/) {print $2, $8, $9, $1, $3, "+"} else {print $2, $9, $8, $1, $3, "-"}}}' < $out.blast.o > $out.blast.bed
 
-bedtools slop -s  -i $out.blast.bed  -g /Users/ap6/Documents/Results/Repeat_analysis/v8/Ref/schisto_hic.curated.final.v8.fa.length -b $flank > $out.blast.flank.bed
+bedtools slop -s  -i $out.blast.bed  -g $genome.length -b $flank > $out.blast.flank.bed
 
-bedtools getfasta -fi  /Users/ap6/Documents/Results/Repeat_analysis/v8/Ref/schisto_hic.curated.final.v8.fa -fo $out.blast.bed.fa  -bed $out.blast.flank.bed -s 
+bedtools getfasta -fi  $genome -fo $out.blast.bed.fa  -bed $out.blast.flank.bed -s 
 
+fasta_count=`grep -c ">" $out.blast.bed.fa`
+
+echo "the fasta has "$fasta_count " sequences"
+
+#rm $out.blast.o $out.blast.bed 
