@@ -5,7 +5,8 @@ then
     echo -e "\nusage: $0 <genome> <fasta.in> <min_length> <flank>\n"
     echo -e "DESCRIPTION: This script takes a fasta sequence <fasta.in>, blasts it to the genome, recovers locations with alingment length > <min_length>, prints them as bed file, extends bed coordinates <flank> bases in each direction, and makes fasta from that BED.\n"
 
-    echo -e "INPUT:       <fasta.in>    query sequence if fasta format"
+    echo -e "INPUT:       <genome>      location of genome in fasta format; a list of chromosomes and their length should also be found in the same directory as the genome, and has to have the extension .lengt"h
+    echo -e "             <fasta.in>    query sequence if fasta format"
     echo -e "             <min_length>  min length of the blast hit. If set to 0, min length = (length of query)/2"
     echo -e "             <flank>       number of bases to extend the genome coordinates of the matched locus\n"
     

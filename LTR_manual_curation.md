@@ -32,7 +32,11 @@ In a nutshell, the general steps for doing manual curation of LTR retroelements 
 6. repeat steps 2-5 using the new consensus and extending to the blast hit to include more flanking sequence until the LTRs are found. 
 7. translate the new consensus and look for the long ORF. 
 8. look for conserved protein coding domains in the ORF.
-9. visualise the LTR retroelement and annotate its features (optional but recommended)
+9. visualise the LTR retroelement and annotate its features (optional but recommended). Once all are done, it will be possible to collect all annotations into one GFF that can be used in many ways. 
+10. reduce redundancy and find related LTR retroelements using `cd-hit-est`. Collect all sequences for LTR and INT subparts (using my scrip `convert_embls_to_gff_and_bed.pl` and `bedtools getfasta`) and run `cd-hit-est -i <in.fasta> -o cd-hit-est_output.o -c 0.80`, note to include the identity threshold of 0.80, as described in the 80-80-80 rule (add REF)
+
+
+
 
 
 ## In detail 
@@ -55,5 +59,5 @@ This `ltr-families.csv` can be opened and edited in Excel or Google docs.
 
 ## Alternative protocols
 
-1. in order to reduce or prioritise families for manual curation, it is possible to predict conserved domain in bulk. For that, for each conserved family, predict the translation of in all 6 frames `transeq -sequence <in_fasta> -outseq <out_pep> -frame 6` and then predict any conserved domains (using `pfam_scan.pl`). It is then possible to select only those sequences that have coding potential for an LTR retroelement conserved domain. 
+1. in order to reduce or prioritise families for manual curation, it is possible to predict conserved domain in bulk. For that, for each conserved family, predict the translation of in all 6 frames `transeq -sequence <in_fasta> -outseq <out_pep> -frame 6` and then predict any conserved domains (for example using `pfam_scan.pl` from the [EBI](https://www.ebi.ac.uk/Tools/pfa/pfamscan/), also available through `conda`). It is then possible to select only those sequences that have coding potential for an LTR retroelement conserved domain. 
 
