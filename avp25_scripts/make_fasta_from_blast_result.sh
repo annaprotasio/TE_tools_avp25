@@ -5,7 +5,7 @@ then
     echo -e "\nusage: $0 <genome> <fasta.in> <min_length> <flank>\n"
     echo -e "DESCRIPTION: This script takes a fasta sequence <fasta.in>, blasts it to the genome, recovers locations with alingment length > <min_length>, prints them as bed file, extends bed coordinates <flank> bases in each direction, and makes fasta from that BED.\n"
 
-    echo -e "INPUT:       <genome>      location of genome in fasta format; a list of chromosomes and their length should also be found in the same directory as the genome, and has to have the extension .lengt"h
+    echo -e "INPUT:       <genome>      location of genome in fasta format; a list of chromosomes and their length should also be found in the same directory as the genome, and has to have the extension `.length`. If the genome is called genome.fasta, the chromosome length file should be named genome.fasta.length. This file should be TAB delimeted"
     echo -e "             <fasta.in>    query sequence if fasta format"
     echo -e "             <min_length>  min length of the blast hit. If set to 0, min length = (length of query)/2"
     echo -e "             <flank>       number of bases to extend the genome coordinates of the matched locus\n"
@@ -13,6 +13,11 @@ then
     echo -e "OUTPUT:      produces a <fasta.in.bed> which is the blast results BED file file"
     echo -e "             produces a <fasta.in.blast.flank.bed> which is the extended BED"
     echo -e "             produces a <fasta.in.blast.flank.bed.fa> bedtools getfasta \n"
+    
+    echo -e "REQUIRES:    file with genome chromosome lengths (see above)"
+    echo -e "             BLAST database as nucl for the genome (run \"makeblastdb -in genome.fasta -dbtype nucl\" )\n"
+
+    
      
     exit
 fi
@@ -47,4 +52,4 @@ fasta_count=`grep -c ">" $out.blast.bed.fa`
 
 echo "the fasta has "$fasta_count " sequences"
 
-#rm $out.blast.o $out.blast.bed 
+rm $out.blast.o $out.blast.bed *.blast.flank.bed
