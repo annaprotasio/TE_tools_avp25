@@ -27,7 +27,7 @@ while (<IN>) {
     my $str = substr $line[9], 1, -2;
     my $transc_id = join '', $str, '_dup' , $count; 
 print OUT "$line[0]\tte_annot\texon\t$line[3]\t$line[4]\t$line[5]\t$line[6]\t$line[7]\tgene_id $line[9] transcript_id \"$transc_id; family_id $line[11] class_id $line[13]\n";
-    my $count = $count + 1;
+    $count++;
        
     }
 
