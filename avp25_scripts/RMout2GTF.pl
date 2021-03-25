@@ -49,7 +49,7 @@ while (<IN>) {
     	$order = $line[11] ; $superfam = "Unknown"
     	}
     print OUT0 "$line[5]\tRepeatMasker\trepeat_region\t$line[6]\t$line[7]\t$line[2]\t$strand\t.\trepeat_id \"$line[10]\"; Order \"$order\"; Superfamily \"$superfam\";\n";	
-    #print "$line[5]\tRepeatMasker\trepeat_region\t$line[6]\t$line[7]\t$line[2]\t$strand\t.\trepeat_id \"$line[10]\"; Order \"$order\"; Superfamily \"$superfam\";\n";	
+    #print "$line[5]\tRepeatMasker\trepeat_region\t$line[6]\t$line[7]\t$line[2]\t$strand\t.\trepeat_id \"$line[10]\"; Superfamily \"$superfam\";Order \"$order\";\n";	
     }
     };
 
