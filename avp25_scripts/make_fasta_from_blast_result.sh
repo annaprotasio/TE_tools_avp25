@@ -14,8 +14,7 @@ then
     echo -e "             produces a <fasta.in.blast.flank.bed> which is the extended BED"
     echo -e "             produces a <fasta.in.blast.flank.bed.fa> bedtools getfasta \n"
     
-    echo -e "ALSO REQUIRES:		file with genome chromosome lengths calles \'genome.length\'. This is TAB delimited list of chromosomes and their length that should also be found in the same directory as the genome, and has to have the extension \`.length\`. If the file doesn't exist, the script will attempt to generate it."
-    echo -e "             		BLAST database as nucl for the genome (run \"makeblastdb -in genome.fasta -dbtype nucl\" ). If not provided, the script will attempt to generate it\n"
+    echo -e "REQUIRES:		Installation of SAMTOOLS and BLAST+ accessible from PATH\n"
 
     
      

@@ -2,16 +2,16 @@
 
 if [ $# -ne 4 ]
 then
-    echo -e "\nusage: $0 <RM2output.fa> <genome.fa> <pfam_db_dir> \n"
-    echo -e "DESCRIPTION: 	This script runs a little pipeline that collects RT domains from peptide sequences, makes and MAFF alignment, selects informative blocks with GBLOCKS and calculates a tree with IQTREE.\n"
+    echo -e "\nusage: $0 <RM2output.fa> <genome.fa> <pfam_db_dir> <github_repo_DIR>\n"
+    echo -e "DESCRIPTION: 	This script runs a little pipeline that: 1) reduces sequence redundancy from <RM2output.fa> using cd-hit-est; 2) extract info from RM2 fasta headers; 3) for each RM2 family, makes a rough estimate of the number of copies in the genome; 4) calculates no of Pfam domains in each putative RM2 family and 5) calculates length of consensus.\n"
 
-    echo -e "DEPENDENCIES: 	Requires installation of pfam_scan.pl, HMMER (hmmsearch), cd-hit, mafft, gblocks and iqtree\n"
+    echo -e "DEPENDENCIES: 	Requires installation of pfam_scan.pl, cd-hit, blast, samtools OR Use conda install recommendations from paper and activate the environment before running this script. \n"
 
     echo -e "INPUT:       	<RM2output.fa>		output from RM2 often with the ending `rm2.db-families.fa` "
     echo -e "             	<genome.fa>			genome used to predict the library"
     echo -e "             	<pfam_db_DIR>		path to the Pfam database directory"
-	echo -e "             	<github_repo_DIR>	path to the local github repo (previously downloaded"
-    echo -e "OUTPUT:	    A table\n"     
+	echo -e "             	<github_repo_DIR>	path to the local github repo (previously downloaded), for example \"~/Desktop/path_to_dir/TE_tools_avp25/\" "
+    echo -e "OUTPUT:	    A table; columns are: consensus name, RM2 superfmaily prediction, RM2 family prediction, INR/LTR, consensus length (nt)  \n"     
 
     exit
 fi
@@ -26,12 +26,12 @@ repo=$4
 FILE=cdhit.fa.clstr
 if [ ! -f "$FILE" ]; then
     echo "cd-hit-est has not be run. Running cd-hit-est, this can take some time"
-   cd-hit-est -i $rmout -o cdhit.fa -c 0.8
+   cd-hit-est -i $rmout -o cdhit.fa -aS 0.8 -c 0.8 -G 0 -g 1
 fi
 
 # P1 extract info from headers from cd-hit-output
 
-perl $repo/rm2_fams2table.pl cdhit.fa # makes cdhit.fa.tab
+perl $repo/avp25_scripts/rm2_fams2table.pl cdhit.fa # makes cdhit.fa.tab
 
 sort cdhit.fa.tab | awk '{OFS="\t"; $NF=""; print $0}' > col1.txt
 
