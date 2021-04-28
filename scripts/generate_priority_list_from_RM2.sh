@@ -26,7 +26,7 @@ repo=$4
 FILE=cdhit.fa.clstr
 if [ ! -f "$FILE" ]; then
     echo "cd-hit-est has not be run. Running cd-hit-est, this can take some time"
-   cd-hit-est -i $rmout -o cdhit.fa -aS 0.8 -c 0.8 -G 0 -g 1
+   cd-hit-est -i $rmout -o cdhit.fa -aS 0.8 -c 0.8 -G 0
 fi
 
 # P1 extract info from headers from cd-hit-output
