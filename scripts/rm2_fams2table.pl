@@ -1,7 +1,7 @@
 #!/usr/local/bin/perl -w
 
 ### this script was written by Anna V.Protasio / date 18-02-2021
-### last modified
+### last modified 28-04-2021
 ### it takes RM2 output (multifasta sequences) and produces a table summarising information from the fasta headers
 ### 
 
@@ -23,7 +23,7 @@ my $in = shift; #the RM2 output
 
 # open files
 open( IN, "$in" ) or die "Cannot open IN file\n";
-open( OUT, ">", "$in.tab") or die "Cannot open OUT file\n";
+open( OUT, ">", "rm2header2table.tab") or die "Cannot open OUT file\n";
 
 
 #print OUT  "Name\tOrder\tSuperfamily\tSubart\tmsa_size\n";
