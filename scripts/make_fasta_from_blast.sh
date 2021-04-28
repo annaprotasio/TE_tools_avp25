@@ -5,16 +5,16 @@ then
     echo -e "\nusage: $0 <genome> <fasta.in> <min_length> <flank>\n"
     echo -e "DESCRIPTION: This script takes a fasta sequence <fasta.in>, blasts it to the genome, recovers locations with alingment length > <min_length>, prints them as bed file, extends bed coordinates <flank> bases in each direction, and makes fasta from that BED.\n"
 
-    echo -e "INPUT:       <genome>      location of genome in fasta format"
-    echo -e "             <fasta.in>    query sequence if fasta format"
-    echo -e "             <min_length>  min length of the blast hit. If set to 0, min length = (length of query)/2"
-    echo -e "             <flank>       number of bases to extend the genome coordinates of the matched locus\n"
+    echo -e "INPUT:     <genome>      location of genome in fasta format"
+    echo -e "           <fasta.in>    query sequence if fasta format"
+    echo -e "           <min_length>  min length of the blast hit. If set to 0, min length = (length of query)/2"
+    echo -e "           <flank>       number of bases to extend the genome coordinates of the matched locus\n"
     
-    echo -e "OUTPUT:      produces a <fasta.in.bed> which is the blast results BED file file"
-    echo -e "             produces a <fasta.in.blast.flank.bed> which is the extended BED"
-    echo -e "             produces a <fasta.in.blast.flank.bed.fa> bedtools getfasta \n"
+    echo -e "OUTPUT:    produces a <fasta.in.bed> which is the blast results BED file file"
+    echo -e "           produces a <fasta.in.blast.flank.bed> which is the extended BED"
+    echo -e "           produces a <fasta.in.blast.flank.bed.fa> bedtools getfasta \n"
     
-    echo -e "REQUIRES:		Installation of SAMTOOLS and BLAST+ accessible from PATH\n"
+    echo -e "REQUIRES:  Installation of BEDTOOLS, SAMTOOLS and BLAST+ accessible from PATH\n"
 
     
      
@@ -54,8 +54,6 @@ then
 else
 	min_length=$3
 fi
-
-
 
 
 echo "query sequence" $out
