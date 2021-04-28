@@ -2,7 +2,8 @@
 
 if [ $# -ne 4 ]
 then
-    echo -e "\nusage: $0 <genome> <fasta.in> <min_length> <flank>\n"
+short_name=`basename $0`
+    echo -e "\nusage: `basename $0` <genome> <fasta.in> <min_length> <flank>\n"
     echo -e "DESCRIPTION: This script takes a fasta sequence <fasta.in>, blasts it to the genome, recovers locations with alingment length > <min_length>, prints them as bed file, extends bed coordinates <flank> bases in each direction, and makes fasta from that BED.\n"
 
     echo -e "INPUT:     <genome>      location of genome in fasta format"
@@ -60,9 +61,9 @@ echo "query sequence" $out
 echo "minimum length of blast hit = " $min_length
 echo "the hit locus will be extended" = $flank "bases in each direction"
 
-# run blast
+# run blast # evalue cutoff is 1e-20
 echo "#qseqid sseqid pident length mismatch qstart qend sstart send sstrand" > $out.blast.o
-blastn -query $fasta_in -db $genome -outfmt "6 qseqid sseqid pident length mismatch qstart qend sstart send sstrand" -evalue 0.000000000000000000001 | awk -v "ml=$min_length" '{OFS="\t"; if ($4 > ml) {print $0}}' >> $out.blast.o
+blastn -query $fasta_in -db $genome -outfmt "6 qseqid sseqid pident length mismatch qstart qend sstart send sstrand" -evalue 1e-20 | awk -v "ml=$min_length" '{OFS="\t"; if ($4 > ml) {print $0}}' >> $out.blast.o
 
 # parse blast result into a bed file. 
 awk '{OFS="\t"; if ($1~/^\#/) {} else { if ($10~/plus/) {print $2, $8, $9, $1, $3, "+"} else {print $2, $9, $8, $1, $3, "-"}}}' < $out.blast.o > $out.blast.bed

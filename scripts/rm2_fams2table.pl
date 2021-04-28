@@ -70,7 +70,7 @@ print "TABLE file generated. All done!\n" ;
 
 sub print_usage {
   
-  print "Usage: /Users/ap6/Documents/bin/Perl/rm2_fams2table.pl <rm2.db-families.fa> \n";
+  print "Usage: $0 <rm2.db-families.fa> \n";
   print "  <rm2.db-families.fa> = output file from running RepeatModeler2\n";
   
 }
