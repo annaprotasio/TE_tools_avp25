@@ -51,7 +51,7 @@ cat blast.$current_time | awk '{OFS="\t";if ( ($1==$2) &&  ($4<1000) && ($7<10) 
 
 # make bed file
 
-cat LTR_annotation.gff | awk '{OFS="\t"; print $1,$4,$5,$1"-"$NF,$6,$7}' |  tr -d '";' | sed '/^#/d' > LTR_annotation.bed
+cat LTR_annotation.gff | awk '{OFS="\t"; print $1,$4-1,$5,$1"-"$NF,$6,$7}' |  tr -d '";' | sed '/^#/d' > LTR_annotation.bed
 
 rm blast.$current_time
 
