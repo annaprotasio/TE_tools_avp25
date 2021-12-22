@@ -1,5 +1,5 @@
 # TE_tools_avp25
- Transposable Elements tools
+Transposable Elements tools collected by Anna 
 
 ## Summary of Tools / files
 
